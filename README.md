@@ -1,3 +1,35 @@
+Docker image for youtube-dl-webui
+
+Use the following configuration
+```
+docker run \
+-d \
+--name youtube-dl \
+-e PGID=0 \
+-e PUID=0 \
+-p 5000:5000 \
+-v {path to download and database folder}:/tmp \
+-v {path to youtube-dl.conf}:/etc/youtube-dl.conf \
+ravetam/youtube-dl
+```
+
+Example of youtube-dl.conf file
+```
+-o %(upload_date)s_%(title)s_[%(id)s].%(ext)s
+--write-thumbnail
+--embed-thumbnail
+--add-metadata
+-f bestvideo[ext=mp4]+bestaudio[ext=m4a]
+--merge-output-format mp4
+```
+
+Database will be created at
+`{path to download and database folder}\youtube_dl_webui.db`
+
+Video will be downloaded to
+`{path to download and database folder}\youtube_dl`
+
+
 # youtube-dl-webui
 
 Another webui for youtube-dl powered by Flask.
